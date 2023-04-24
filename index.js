@@ -18,6 +18,10 @@ app.use("/api/user", require("./routes/userRoutes"))
 app.use("/api/employee", require("./routes/employeeRoute"))
 app.use("/api/appointment", require("./routes/appointmentRoute"))
 
+app.use("*", (req, res) => {
+    res.sendFile("public/index.html")
+})
+
 mongoose.connection.once("open", () => {
     console.log("DB CONNECTED")
     app.listen(process.env.PORT || 5000, err => {
