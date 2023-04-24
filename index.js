@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const express = require("express")
 const { connectDB } = require("./config/db")
 const cors = require("cors")
+const path = require("path")
 connectDB()
 const app = express()
 app.use(express.json())
@@ -19,7 +20,7 @@ app.use("/api/employee", require("./routes/employeeRoute"))
 app.use("/api/appointment", require("./routes/appointmentRoute"))
 
 app.use("*", (req, res) => {
-    res.sendFile("public/index.html")
+    res.sendFile(path.join(__dirname, "public/index.html"))
 })
 
 mongoose.connection.once("open", () => {
